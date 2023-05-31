@@ -6,7 +6,7 @@ namespace dotnet_webapi.DataContext
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {   }
 
-        public DbSet<Employee> Branches { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
