@@ -38,7 +38,7 @@ namespace dotnet_webapi.Models
 
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            Employee emp =  await applicationDbContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
+            Employee emp =  await applicationDbContext.Employees.FirstOrDefaultAsync(x => x.Id == employee.Id);
             if(emp != null)
             {
                 emp.Name = employee.Name;
