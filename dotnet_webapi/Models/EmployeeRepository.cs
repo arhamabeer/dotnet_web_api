@@ -1,4 +1,5 @@
 ﻿using dotnet_webapi.DataContext;
+using Microsoft.IdentityModel.Tokens;
 
 namespace dotnet_webapi.Models
 {
@@ -34,6 +35,17 @@ namespace dotnet_webapi.Models
         public async Task<Employee> GetEmployee(int id)
         {
             return await applicationDbContext.Employees.FirstOrDefaultAsync(x => x.Id == id);            
+        }
+
+        public async Task<List<Employee>> Search(string name)
+        {
+            IQueryable<Employee> query = applicationDbContext.Employees;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(e=> e.Name.Contains(name));                
+            }
+            return await query.ToListAsync();
         }
 
         public async Task<Employee> UpdateEmployee(Employee employee)

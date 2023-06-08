@@ -119,5 +119,26 @@ namespace dotnet_webapi.Controllers
                 });
             }
         }
+        [HttpGet("{search}")]
+        public async Task<ActionResult> Search(string search)
+        {
+            try
+            {
+                var result = await _employeeRepository.Search(search);
+                if (result.Any())
+                {
+                    return Ok(result);
+
+                }
+                return NotFound("No Name matches found.");
+            } catch (Exception ex)
+            {
+                return StatusCode(501, new
+                {
+                    originalError = ex.Message,
+                    errorMessage = "Failed to fetch data from the Database."
+                });
+            }
+        }
     }
 }

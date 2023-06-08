@@ -7,5 +7,6 @@
         Task<Employee> UpdateEmployee(Employee employee);
         Task<Employee> AddEmployee(Employee employee);
         void DeleteEmployee(int id);
+        Task<List<Employee>> Search (string name);
     }
 }
